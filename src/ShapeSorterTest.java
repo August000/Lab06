@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,9 +28,9 @@ public class ShapeSorterTest
 		Shape d = new Circle("test4", 1.5);
 
 		sorter.addShape(a);
-		sorter.addShape(b);
-		sorter.addShape(c);
-		sorter.addShape(d);
+        sorter.addShape(b);
+        sorter.addShape(c);
+        sorter.addShape(d);
 
 		Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(0), a);
 		Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(1), b);
@@ -42,7 +44,68 @@ public class ShapeSorterTest
 	@Test
 	public void SortShapesDefaultTest()
 	{
-		// TODO: complete this...
+	    ShapeSorter sorter = new ShapeSorter();
+	    
+	    Shape a = new Rectangle("A", 4, 2);
+	    Shape b = new Square("B", 3);
+	    Shape c = new Rectangle("C", 1, 8);
+        Shape d = new Circle("D", 1.5);
+       
+        //Test 1
+        sorter.addShape(a);
+        sorter.addShape(d);
+        
+        sorter.sortShapes();
+        
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(0), d);
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(1), a);
+        
+        sorter.shapes.clear();
+        
+        
+        //Test -1
+        sorter.addShape(d);
+        sorter.addShape(a);
+        
+        sorter.sortShapes();
+        
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(0), d);
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(1), a);
+        
+        sorter.shapes.clear();
+        
+        //TestEquals Bigger
+        sorter.addShape(a);
+        sorter.addShape(c);
+        
+        sorter.sortShapes();
+        
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(0), a);
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(1), c);
+        
+        sorter.shapes.clear();
+        
+        //TestEquals Smaller
+        sorter.addShape(c);
+        sorter.addShape(a);
+        
+        sorter.sortShapes();
+        
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(0), a);
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(1), c);
+        
+        sorter.shapes.clear();
+        
+        //Test Same Shape 
+        sorter.addShape(b);
+        sorter.addShape(b);
+        
+        sorter.sortShapes();
+        
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(0), b);
+        Assert.assertEquals("Shapes order incorrect...", sorter.shapes.get(1), b);
+        
+        sorter.shapes.clear();
 	}
 
 	/**
@@ -51,7 +114,26 @@ public class ShapeSorterTest
 	@Test
 	public void SortShapesAreaTest()
 	{
-		// TODO: complete this...
+	    
+	    ShapeSorter sorter = new ShapeSorter();
+	    
+	    Shape a = new Rectangle("A", 4, 2);
+        Shape b = new Square("B", 3);
+        Shape c = new Rectangle("C", 1, 8);
+        Shape d = new Circle("D", 1.5);
+        
+        sorter.addShape(a);
+        sorter.addShape(b);
+        sorter.addShape(c);
+        sorter.addShape(d);
+        
+        sorter.sortShapes(new ShapeAreaComparator());
+       
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(0), d);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(1), a);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(2), c);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(3), b);
+       
 	}
 
 	/**
@@ -60,7 +142,30 @@ public class ShapeSorterTest
 	@Test
 	public void SortShapesPerimeterTest()
 	{
-		// TODO: complete this...
+	    ShapeSorter sorter = new ShapeSorter();
+       
+        Shape a = new Rectangle("A", 4, 2);
+        Shape b = new Square("B", 3);
+        Shape c = new Rectangle("C", 1, 8);
+        Shape d = new Circle("D", 1.5);
+        
+        sorter.addShape(a);
+        sorter.addShape(b);
+        sorter.addShape(c);
+        sorter.addShape(d);
+        
+        sorter.sortShapes(new ShapePerimeterComparator());
+
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(0), d);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(1), a);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(2), b);
+        Assert.assertEquals("Shapes added incorrectly...", sorter.shapes.get(3), c);
+        
+        Assert.assertEquals(true,  c.equals(c));
+        Assert.assertEquals(false, b.equals(c));
+        
+	    
+	    
 	}
 
 	/**
@@ -69,6 +174,16 @@ public class ShapeSorterTest
 	@Test
 	public void ToStringTest()
 	{
-		// TODO: complete this...
+	    ShapeSorter sorter = new ShapeSorter();
+	    
+	    Shape a = new Rectangle("A", 4, 2);
+        Shape b = new Square("B", 3);
+        
+        sorter.addShape(a);
+        sorter.addShape(b);
+        
+        Assert.assertEquals(a.toString()+"\n"+b.toString()+"\n",sorter.toString());
+        
+      
 	}
 }

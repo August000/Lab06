@@ -93,9 +93,29 @@ public abstract class Shape implements Comparable<Shape>
 	 *         (C) Perimeter of this = Perimeter of s: return 0 (this is effecitively equal to s in a sorted list)
 	 */
 	@Override
-	public int compareTo(Shape s)
+	public int compareTo(Shape s1)
 	{
-		// TODO: complete this...
+		Shape s = (Shape) s1;
+	    
+	    if(this.getArea() > s.getArea()) {
+			return 1;
+		}
+		else if(this.getArea() < s.getArea()) {
+			return -1;
+		}
+		else {
+			if(this.getPerimeter() > s.getPerimeter()) {
+				return 1;
+			}
+			else if(this.getPerimeter() < s.getPerimeter()) {
+				return -1;
+			}
+			else {
+				return 0;
+			}
+		}
+	
+
 	}
 
 	/**
@@ -129,6 +149,6 @@ public abstract class Shape implements Comparable<Shape>
 	@Override
 	public String toString()
 	{
-		// TODO: complete this...
+		return String.format("%s:\t ID = %s\t area = %.3f\t perimeter = %.3f", this.getShapeType(), this.getId(), this.getArea(), this.getPerimeter());
 	}
 }

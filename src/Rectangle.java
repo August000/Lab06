@@ -11,6 +11,9 @@ public class Rectangle extends Polygon{
 		
 		sideLengths.add(height);
 		sideLengths.add(width);
+		sideLengths.add(height);
+		sideLengths.add(width);
+		
 	}
 	public double getArea(){
 		return height*width;
