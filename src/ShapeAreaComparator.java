@@ -53,14 +53,6 @@ public class ShapeAreaComparator implements Comparator<Shape>
 	 */
 	public boolean equals(Shape s1, Shape s2)
 	{
-		boolean areEqual = false;
-		
-		int result = this.compare(s1,s2);
-		
-		if(result == 0){
-			areEqual = true;
-		}
-		
-		return areEqual;
+		return this.compare(s1, s2) == 0;
 	}
 }
